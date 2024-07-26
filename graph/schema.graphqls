@@ -1,0 +1,80 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  phone_number: String!
+  password: String!
+}
+
+type Profile {
+  id: Int!
+  full_name: String!
+  age: String!
+  gender: String!
+  address: String
+  user_id: Int!
+}
+
+type Career {
+  id: Int!
+  company: String!
+  position: String!
+  job_type: String!
+  description: String!
+}
+
+type DeleteStatus{
+    iserror: Boolean!
+    message: String
+}
+
+input NewUser {
+  name: String!
+  email: String!
+  phoneNumber: String!
+  password: String!
+}
+
+input NewProfile {
+ full_name: String!
+  age: String!
+  gender: String!
+  address: String
+}
+
+input NewCareer {
+  company: String!
+  position: String!
+  jobType: String!
+  description: String!
+}
+
+type Query {
+  GetAllUsers: [User!]!
+  GetOneUserById(id: Int!): User!  
+
+  GetAllProfile: [Profile!]!
+  GetOneProfile(id: Int!): Profile!
+
+  GetAllCareer: [Career!]!
+  GetOneCareer(id: Int!): Career!
+}
+
+type Mutation {
+  createUser(input: NewUser!): User!
+  updateUser(id: Int!, input: NewUser!): User!
+  deleteUser(id: Int!): DeleteStatus
+  
+  createProfile(input: NewProfile!): Profile!
+  updateProfile(id: Int!, input: NewProfile!): Profile!
+  deleteProfile(id: Int!):DeleteStatus
+
+  createCareer(input: NewCareer!): Career!
+  updateCareer(id: Int!, input: NewCareer!): Career!
+  deleteCareer(id: Int!):DeleteStatus
+}
